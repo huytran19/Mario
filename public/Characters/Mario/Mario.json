@@ -1,0 +1,236 @@
+{"frames": {
+
+"Mario-Climb.png":
+{
+	"frame": {"x":72,"y":17,"w":16,"h":29},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":29},
+	"sourceSize": {"w":16,"h":29}
+},
+"Mario-Idle-1.png":
+{
+	"frame": {"x":16,"y":0,"w":14,"h":17},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":14,"h":17},
+	"sourceSize": {"w":14,"h":17}
+},
+"Mario-Idle-2.png":
+{
+	"frame": {"x":18,"y":17,"w":18,"h":25},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":18,"h":25},
+	"sourceSize": {"w":18,"h":25}
+},
+"Mario-Idle-3.png":
+{
+	"frame": {"x":30,"y":0,"w":14,"h":17},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":14,"h":17},
+	"sourceSize": {"w":14,"h":17}
+},
+"Mario-Idle-4.png":
+{
+	"frame": {"x":36,"y":17,"w":18,"h":25},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":18,"h":25},
+	"sourceSize": {"w":18,"h":25}
+},
+"Mario-Idle-5.png":
+{
+	"frame": {"x":104,"y":17,"w":18,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":18,"h":32},
+	"sourceSize": {"w":18,"h":32}
+},
+"Mario-Idle-6.png":
+{
+	"frame": {"x":0,"y":49,"w":18,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":18,"h":32},
+	"sourceSize": {"w":18,"h":32}
+},
+"Mario-Idle-7.png":
+{
+	"frame": {"x":54,"y":17,"w":18,"h":25},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":18,"h":25},
+	"sourceSize": {"w":18,"h":25}
+},
+"Mario-Jump.png":
+{
+	"frame": {"x":18,"y":49,"w":18,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":18,"h":32},
+	"sourceSize": {"w":18,"h":32}
+},
+"Mario-Run-1.png":
+{
+	"frame": {"x":36,"y":49,"w":18,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":18,"h":32},
+	"sourceSize": {"w":18,"h":32}
+},
+"Mario-Run-2.png":
+{
+	"frame": {"x":54,"y":49,"w":18,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":18,"h":32},
+	"sourceSize": {"w":18,"h":32}
+},
+"Mario-Run-3.png":
+{
+	"frame": {"x":72,"y":49,"w":18,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":18,"h":32},
+	"sourceSize": {"w":18,"h":32}
+},
+"Mario-Sit.png":
+{
+	"frame": {"x":90,"y":49,"w":18,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":18,"h":32},
+	"sourceSize": {"w":18,"h":32}
+},
+"Mario-Small-Climb.png":
+{
+	"frame": {"x":44,"y":0,"w":14,"h":17},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":14,"h":17},
+	"sourceSize": {"w":14,"h":17}
+},
+"Mario-Small-Die.png":
+{
+	"frame": {"x":0,"y":0,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+"Mario-Small-Jump.png":
+{
+	"frame": {"x":0,"y":17,"w":18,"h":18},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":18,"h":18},
+	"sourceSize": {"w":18,"h":18}
+},
+"Mario-Small-Run-1.png":
+{
+	"frame": {"x":58,"y":0,"w":13,"h":17},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":13,"h":17},
+	"sourceSize": {"w":13,"h":17}
+},
+"Mario-Small-Run-2.png":
+{
+	"frame": {"x":71,"y":0,"w":17,"h":17},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":17,"h":17},
+	"sourceSize": {"w":17,"h":17}
+},
+"Mario-Small-Run-3.png":
+{
+	"frame": {"x":88,"y":0,"w":15,"h":17},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":15,"h":17},
+	"sourceSize": {"w":15,"h":17}
+},
+"Mario-Small-Stop.png":
+{
+	"frame": {"x":103,"y":0,"w":15,"h":17},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":15,"h":17},
+	"sourceSize": {"w":15,"h":17}
+},
+"Mario-Stop.png":
+{
+	"frame": {"x":108,"y":49,"w":18,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":18,"h":32},
+	"sourceSize": {"w":18,"h":32}
+},
+"Mario-W-Climb.png":
+{
+	"frame": {"x":88,"y":17,"w":16,"h":29},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":29},
+	"sourceSize": {"w":16,"h":29}
+},
+"Mario-W-Jump.png":
+{
+	"frame": {"x":0,"y":81,"w":18,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":18,"h":32},
+	"sourceSize": {"w":18,"h":32}
+},
+"Mario-W-Run-1.png":
+{
+	"frame": {"x":18,"y":81,"w":18,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":18,"h":32},
+	"sourceSize": {"w":18,"h":32}
+},
+"Mario-W-Run-2.png":
+{
+	"frame": {"x":36,"y":81,"w":18,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":18,"h":32},
+	"sourceSize": {"w":18,"h":32}
+},
+"Mario-W-Run-3.png":
+{
+	"frame": {"x":54,"y":81,"w":18,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":18,"h":32},
+	"sourceSize": {"w":18,"h":32}
+},
+"Mario-W-Sit.png":
+{
+	"frame": {"x":72,"y":81,"w":18,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":18,"h":32},
+	"sourceSize": {"w":18,"h":32}
+},
+"Mario-W-Stop.png":
+{
+	"frame": {"x":90,"y":81,"w":18,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":18,"h":32},
+	"sourceSize": {"w":18,"h":32}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "Mario.png",
+	"format": "RGBA8888",
+	"size": {"w":126,"h":113},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:068b6ef66191bae55009e2344e6cb092:9b464f71f4553f5cd1cddfa78cf96ba6:677c66111ca926930683759f5df190f0$"
+}
+}

@@ -1,0 +1,68 @@
+{"frames": {
+
+"Goomba-1.png":
+{
+	"frame": {"x":0,"y":0,"w":18,"h":17},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":18,"h":17},
+	"sourceSize": {"w":18,"h":17}
+},
+"Goomba-2.png":
+{
+	"frame": {"x":18,"y":0,"w":18,"h":17},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":18,"h":17},
+	"sourceSize": {"w":18,"h":17}
+},
+"Goomba-die.png":
+{
+	"frame": {"x":36,"y":0,"w":18,"h":17},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":18,"h":17},
+	"sourceSize": {"w":18,"h":17}
+},
+"Turtle-1.png":
+{
+	"frame": {"x":0,"y":17,"w":18,"h":25},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":18,"h":25},
+	"sourceSize": {"w":18,"h":25}
+},
+"Turtle-2.png":
+{
+	"frame": {"x":18,"y":17,"w":18,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":18,"h":24},
+	"sourceSize": {"w":18,"h":24}
+},
+"Turtle-die.png":
+{
+	"frame": {"x":36,"y":17,"w":18,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":18,"h":16},
+	"sourceSize": {"w":18,"h":16}
+},
+"Turtle-rev.png":
+{
+	"frame": {"x":0,"y":42,"w":18,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":18,"h":16},
+	"sourceSize": {"w":18,"h":16}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "Enemies.png",
+	"format": "RGBA8888",
+	"size": {"w":54,"h":58},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:d8a9b5e24cb8b55daff4e01638247d6f:7bc11fd46c1b00d39b55a0015ecf2501:b1585ba32d60cf5440f3fdffe8c37c76$"
+}
+}

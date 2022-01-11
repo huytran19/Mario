@@ -1,0 +1,44 @@
+{"frames": {
+
+"Turtle-1.png":
+{
+	"frame": {"x":0,"y":0,"w":18,"h":25},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":18,"h":25},
+	"sourceSize": {"w":18,"h":25}
+},
+"Turtle-2.png":
+{
+	"frame": {"x":0,"y":25,"w":18,"h":24},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":18,"h":24},
+	"sourceSize": {"w":18,"h":24}
+},
+"Turtle-die.png":
+{
+	"frame": {"x":0,"y":49,"w":18,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":18,"h":16},
+	"sourceSize": {"w":18,"h":16}
+},
+"Turtle-rev.png":
+{
+	"frame": {"x":0,"y":65,"w":18,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":18,"h":16},
+	"sourceSize": {"w":18,"h":16}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "Turtle.png",
+	"format": "RGBA8888",
+	"size": {"w":18,"h":81},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:c69293ed2409a2c4f2b074bb45b11a92:2629f292292efb408a2f91fbe89c2ab8:3b16eb044f1eaaa0b92cbefb7e4799b1$"
+}
+}
