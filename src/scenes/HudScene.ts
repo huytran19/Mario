@@ -62,7 +62,6 @@ export class HudScene extends Phaser.Scene {
       .setText(`Lives ${this.registry.get('lives')}`);
   }
   private updateMap() {
-    console.log('??');
     this.level = this.scene.get(`level${this.registry.get('world')}`);
     this.level.events.on('scoreChanged', this.updateScore, this);
     this.level.events.on('mapChanged', this.updateMap, this);

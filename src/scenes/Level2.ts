@@ -29,6 +29,7 @@ export default class Level2 extends Phaser.Scene {
     this.marioState = data.marioState;
   }
   create() {
+    this.sound.play('soundtrack');
     this.map = this.make.tilemap({ key: 'map2' });
     this.tileset = this.map.addTilesetImage('world', 'tiles');
     this.ground = this.map.createLayer('Ground', this.tileset);
@@ -221,11 +222,18 @@ export default class Level2 extends Phaser.Scene {
     obj1: Phaser.GameObjects.GameObject,
     obj2: Phaser.GameObjects.GameObject
   ) {
+    const mario = obj1 as Mario;
     const box = obj2 as Box;
     const bodyBox = box.body as Phaser.Physics.Arcade.Body;
     if (bodyBox.touching.down && box.active) {
       box.marioHitBox();
-      this.collectibles.add(box.spawnBoxContent());
+      let isChange;
+      if (mario.marioState == 0) {
+        isChange = false;
+      } else {
+        isChange = true;
+      }
+      this.collectibles.add(box.spawnBoxContent(isChange, 'flower'));
       switch (box.getBoxContentString()) {
         case 'coin': {
           box.tweenBoxContent({ y: box.y - 40, alpha: 0 }, 700, function () {
@@ -235,7 +243,8 @@ export default class Level2 extends Phaser.Scene {
           break;
         }
         case 'mushroom': {
-          box.popUpCollectible();
+          box.popUpCollectible(isChange);
+
           break;
         }
       }
@@ -255,6 +264,13 @@ export default class Level2 extends Phaser.Scene {
         brick.marioHitBrick();
         brick.startHitTimeline();
       } else {
+        this.physics.overlap(
+          this.enemies,
+          obj2,
+          this.handleEnemyBrickOverlap,
+          undefined,
+          this
+        );
         brick.brickDestroy();
       }
     }
@@ -278,6 +294,7 @@ export default class Level2 extends Phaser.Scene {
     const mario = obj1 as Mario;
     const collectible = obj2 as Collectible;
     if (collectible.typeofContent === 'mushroom') {
+      this.sound.play('powerUp');
       if (mario.marioState == 0) {
         mario.growUp();
       } else if (mario.marioState == 1) {
@@ -312,6 +329,10 @@ export default class Level2 extends Phaser.Scene {
     const mario = obj1 as Phaser.GameObjects.Sprite;
     const body = mario.body as Phaser.Physics.Arcade.Body;
     this.mario.winning = true;
+    this.sound.stopAll();
+    this.sound.play('downFlagPole');
+    const flagpole = obj2 as Flagpole;
+    flagpole.addScore(2000);
     setTimeout(() => {
       const poleBody = this.flagPole.body as Phaser.Physics.Arcade.Body;
       poleBody.setSize(3, 0);
@@ -360,7 +381,7 @@ export default class Level2 extends Phaser.Scene {
         (bulletBody.touching.right && enemyBody.touching.left) ||
         (bulletBody.touching.left && enemyBody.touching.right)
       ) {
-        enemy.gotHitOnHead();
+        enemy.gotHitByBullet();
         this.add.tween({
           targets: enemy,
           props: { alpha: 0 },
@@ -374,5 +395,23 @@ export default class Level2 extends Phaser.Scene {
         bullet.destroyBullet();
       }
     }
+  }
+  handleEnemyBrickOverlap(
+    obj1: Phaser.GameObjects.GameObject,
+    obj2: Phaser.GameObjects.GameObject
+  ) {
+    const goomba = obj1 as Goomba;
+    const brick = obj2 as Brick;
+    goomba.gotHitByBreakBrick();
+    this.add.tween({
+      targets: goomba,
+      props: { alpha: 0 },
+      duration: 1000,
+      ease: 'Power0',
+      yoyo: false,
+      onComplete: () => {
+        goomba.isDead();
+      },
+    });
   }
 }

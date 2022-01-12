@@ -10,7 +10,7 @@ import { HudScene } from './scenes/HudScene';
 
 const config: Phaser.Types.Core.GameConfig = {
   type: Phaser.AUTO,
-  width: 800,
+  width: 600,
   height: 240,
   physics: {
     default: 'arcade',
@@ -24,6 +24,9 @@ const config: Phaser.Types.Core.GameConfig = {
     zoom: 2,
   },
   backgroundColor: '#48CBF5',
+  audio: {
+    disableWebAudio: true,
+  },
 };
 
 export default new Phaser.Game(config);

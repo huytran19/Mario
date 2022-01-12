@@ -51,14 +51,24 @@ export default class Box extends Phaser.GameObjects.Sprite {
     });
   }
 
-  public spawnBoxContent(): Collectible {
-    this.content = new Collectible({
-      scene: this.currentScene,
-      x: this.x + 3,
-      y: this.y - 11,
-      texture: this.boxContent,
-      points: 1000,
-    });
+  public spawnBoxContent(isChange: boolean, newTexture: string): Collectible {
+    if (isChange && this.boxContent === 'mushroom') {
+      this.content = new Collectible({
+        scene: this.currentScene,
+        x: this.x + 3,
+        y: this.y - 11,
+        texture: newTexture,
+        points: 1000,
+      });
+    } else {
+      this.content = new Collectible({
+        scene: this.currentScene,
+        x: this.x + 3,
+        y: this.y - 11,
+        texture: this.boxContent,
+        points: 1000,
+      });
+    }
     return this.content;
   }
 
@@ -81,17 +91,37 @@ export default class Box extends Phaser.GameObjects.Sprite {
     this.hitBoxTimeline.play();
   }
 
-  public popUpCollectible(): void {
-    this.content.body.setVelocityX(this.content.speed);
+  public popUpCollectible(isChange: boolean): void {
     this.content.body.setAllowGravity(true);
-    this.content.body.setGravityY(-300);
+    this.content.body.setGravityY(-250);
+    this.currentScene.sound.play('powerUpAppears');
+    if (isChange) {
+      this.content.x -= 3;
+      this.content.body.setVelocityX(0);
+    } else {
+      this.content.body.setVelocityX(this.content.speed);
+    }
   }
 
   public addCoinAndScore(coin: number, score: number): void {
+    this.scene.sound.play('coin');
     this.currentScene.registry.values.coins += coin;
-    console.log(this.currentScene.registry.values.score, score);
     this.currentScene.events.emit('coinsChanged');
     this.currentScene.registry.values.score += score;
     this.currentScene.events.emit('scoreChanged');
+    let scoreText = this.currentScene.add
+      .dynamicBitmapText(this.x, this.y - 20, '8bit', score.toString(), 4)
+      .setOrigin(0, 0);
+
+    this.currentScene.add.tween({
+      targets: scoreText,
+      props: { y: scoreText.y - 40 },
+      duration: 800,
+      ease: 'Power0',
+      yoyo: false,
+      onComplete: function () {
+        scoreText.destroy();
+      },
+    });
   }
 }

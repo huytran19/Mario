@@ -49,7 +49,7 @@ export default class Enemy extends Phaser.GameObjects.Sprite {
 
     this.currentScene.add.tween({
       targets: scoreText,
-      props: { y: scoreText.y - 25 },
+      props: { y: scoreText.y - 40 },
       duration: 800,
       ease: 'Power0',
       yoyo: false,

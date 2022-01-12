@@ -6,6 +6,8 @@ export default class Preload extends Phaser.Scene {
   }
 
   preload() {
+    console.log(window.window.innerWidth);
+    this.load.image('logo', 'Tilesets/Logo.png');
     this.load.image('tiles', 'Tilesets/OverWorld.png');
     this.load.image('castle', 'Tilesets/Castle.png');
     this.load.tilemapTiledJSON('map1', 'Tilesets/map1.json');
@@ -28,6 +30,7 @@ export default class Preload extends Phaser.Scene {
     this.load.image('breakbrick1', 'Tilesets/breakbrick1.png');
     this.load.image('breakbrick2', 'Tilesets/breakbrick2.png');
     this.load.image('mushroom', 'Misc/mushroom.png');
+    this.load.image('flower', 'Misc/flower.png');
     this.load.image('coin', 'Misc/coin.png');
     this.load.image('headstick', 'Misc/top-stick.png');
     this.load.image('stick', 'Misc/stick.png');
@@ -42,6 +45,23 @@ export default class Preload extends Phaser.Scene {
       'Characters/Enemies/Turtle.png',
       'Characters/Enemies/Turtle.json'
     );
+
+    this.load.audio('soundtrack', 'Sound/smb_ground.mp3');
+    this.load.audio('coin', 'Sound/smb_coin.wav');
+    this.load.audio('small-jump', 'Sound/smb_jump-small.wav');
+    this.load.audio('jump', 'Sound/smb_jump-super.wav');
+    this.load.audio('powerUp', 'Sound/smb_powerup.wav');
+    this.load.audio('shrink', 'Sound/smb_shrink.wav');
+    this.load.audio('powerUpAppears', 'Sound/smb_powerup_appears.wav');
+    this.load.audio('bump', 'Sound/smb_bump.wav');
+    this.load.audio('brickSmash', 'Sound/smb_breakblock.wav');
+    this.load.audio('gotHit', 'Sound/smb_kick.wav');
+    this.load.audio('fireBallShoot', 'Sound/smb_fireball.wav');
+    this.load.audio('die', 'Sound/smb_mariodie.wav');
+    this.load.audio('gameOver', 'Sound/smb_gameover.wav');
+    this.load.audio('downFlagPole', 'Sound/smb_flagpole.wav');
+    this.load.audio('clearMap', 'Sound/smb_stage_clear.wav');
+    this.load.audio('clearWorld', 'Sound/smb_world_clear.wav');
   }
 
   create() {
@@ -237,6 +257,7 @@ export default class Preload extends Phaser.Scene {
         },
       ],
     });
+
     this.scene.start('menu');
   }
 }

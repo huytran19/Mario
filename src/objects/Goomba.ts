@@ -47,6 +47,25 @@ export default class Goomba extends Enemy {
     this.isDying = true;
     this.anims.play('goombaDie', true);
     this.showAndAddScore();
+    this.currentScene.sound.play('gotHit');
+  }
+
+  public gotHitByBullet(): void {
+    this.isDying = true;
+    const body = this.body as Phaser.Physics.Arcade.Body;
+    this.flipY = !this.flipY;
+    this.showAndAddScore();
+    this.currentScene.sound.play('gotHit');
+  }
+
+  public gotHitByBreakBrick(): void {
+    this.isDying = true;
+    const body = this.body as Phaser.Physics.Arcade.Body;
+    this.flipY = !this.flipY;
+    body.velocity.y = -180;
+    body.velocity.x = 0;
+    this.showAndAddScore();
+    this.currentScene.sound.play('gotHit');
   }
 
   public isDead(): void {

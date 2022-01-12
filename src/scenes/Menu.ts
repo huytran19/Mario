@@ -18,13 +18,14 @@ export default class Menu extends Phaser.Scene {
     const { width, height } = this.scale;
     const x = width * 0.5;
     const y = height * 0.5;
-
+    const logo = this.add.image(width / 2, height / 2 - 30, 'logo');
+    logo.setScale(0.1);
     this.add
       .bitmapText(
         width / 2,
-        height / 2,
+        height / 2 + 50,
         '8bit',
-        'Press SPACE to play first level',
+        'Press spacebar to play',
         10
       )
       .setOrigin(0.5, 0.5);
@@ -43,6 +44,6 @@ export default class Menu extends Phaser.Scene {
     this.registry.set('world', 1);
     this.registry.set('score', 0);
     this.registry.set('lives', 2);
-    this.registry.set('spawn', { x: 12, y: 44, dir: 'down' });
+    this.registry.set('spawn', { x: 12, y: 180, dir: 'down' });
   }
 }

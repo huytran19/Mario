@@ -7,6 +7,7 @@ export default class Brick extends Phaser.GameObjects.Sprite {
   private currentScene: Phaser.Scene;
   protected destroyingValue: number;
   private hitBoxTimeline!: Phaser.Tweens.Timeline;
+  isDestroying!: boolean;
   constructor(aParams: IBrickConstructor) {
     super(aParams.scene, aParams.x, aParams.y, aParams.texture, aParams.frame);
 
@@ -21,7 +22,7 @@ export default class Brick extends Phaser.GameObjects.Sprite {
     // sprite
     this.setOrigin(0, 0);
     this.setFrame(0);
-
+    this.isDestroying = false;
     // physics
     this.currentScene.physics.world.enable(this);
     this.body.setSize(13, 13);
@@ -42,6 +43,7 @@ export default class Brick extends Phaser.GameObjects.Sprite {
 
   public startHitTimeline(): void {
     this.hitBoxTimeline.play();
+    this.currentScene.sound.play('bump');
   }
 
   public brickDestroy(): void {
@@ -62,6 +64,8 @@ export default class Brick extends Phaser.GameObjects.Sprite {
     smallBrick2.setVelocity(40, -50);
     smallBrick3.setVelocity(-30, -45);
     smallBrick4.setVelocity(30, -45);
+    this.currentScene.sound.play('brickSmash');
+    this.isDestroying = true;
     this.destroy();
   }
 }
