@@ -16,7 +16,6 @@ export default class Mario extends Phaser.GameObjects.Container {
   private climbTime: number = 0;
   private currentScene!: Phaser.Scene;
   private bulletSpeed: number = 50;
-  marioState: number = 0;
   bullet!: Bullet;
 
   private isDying: boolean = false;
@@ -33,18 +32,17 @@ export default class Mario extends Phaser.GameObjects.Container {
     return this.isVulnerable;
   }
 
-  constructor(scene: Phaser.Scene, x: number, y: number, marioState: number) {
+  constructor(scene: Phaser.Scene, x: number, y: number) {
     super(scene, x, y);
     this.currentScene = scene;
     this.initSprite();
     this.cursors = scene.input.keyboard.createCursorKeys();
-    this.marioState = marioState;
   }
 
   private initSprite() {
     this.mario = this.currentScene.add
       .sprite(0, 0, 'mario')
-      .play(`${this.marioState}-idle`)
+      .play(`${this.scene.registry.values.state}-idle`)
       .setOrigin(0, 0);
     this.add(this.mario);
     this.currentScene.physics.add.existing(this);
@@ -56,22 +54,22 @@ export default class Mario extends Phaser.GameObjects.Container {
   }
 
   growUp() {
-    this.mario.play('1-idle');
-    this.marioState = MarioSate.Adult;
+    this.scene.registry.values.state = 1;
+    this.mario.play(`${this.scene.registry.values.state}-idle`);
     this.marioBody.setSize(this.mario.width - 4, this.mario.height);
     this.marioBody.setOffset(2, 0);
   }
 
   superman() {
-    this.mario.play('2-idle');
-    this.marioState = MarioSate.Superman;
+    this.scene.registry.values.state = 2;
+    this.mario.play(`${this.scene.registry.values.state}-idle`);
     this.marioBody.setSize(this.mario.width - 4, this.mario.height);
     this.marioBody.setOffset(2, 0);
   }
 
   private shrinkMario(): void {
-    this.marioState = MarioSate.Small;
-    this.mario.play('0-idle');
+    this.scene.registry.values.state = 0;
+    this.mario.play(`${this.scene.registry.values.state}-idle`);
     this.currentScene.sound.play('shrink');
     this.marioBody.setSize(this.mario.width - 4, this.mario.height);
     this.marioBody.setOffset(2, 0);
@@ -83,7 +81,7 @@ export default class Mario extends Phaser.GameObjects.Container {
       this.handleAnimation(t, dt);
     } else {
       // this.currentScene.sound.play('die');
-      if (this.marioState == 0 && !this.isFalling) {
+      if (this.scene.registry.values.state == 0 && !this.isFalling) {
         this.mario.play('die', true);
         this.isFalling = true;
         this.currentScene.sound.stopAll();
@@ -99,10 +97,8 @@ export default class Mario extends Phaser.GameObjects.Container {
           this.currentScene.scene.start('menu');
         } else {
           this.scene.events.emit('livesChanged');
-          this.currentScene.scene.start(
-            `level${this.scene.registry.values.world}`,
-            { marioState: 0 }
-          );
+          this.scene.registry.values.state = 0;
+          this.currentScene.scene.start('game-scene');
         }
       }
     }
@@ -135,7 +131,7 @@ export default class Mario extends Phaser.GameObjects.Container {
       if (this.cursors.up.isDown && !this.isJumping && !this.isSitting) {
         this.marioBody.velocity.y = -260;
         this.isJumping = true;
-        if (this.marioState == 0) {
+        if (this.scene.registry.values.state == 0) {
           this.currentScene.sound.play('small-jump');
         } else {
           this.currentScene.sound.play('jump');
@@ -156,7 +152,11 @@ export default class Mario extends Phaser.GameObjects.Container {
         }
       }
 
-      if (this.cursors.down.isDown && !this.isSitting && this.marioState != 0) {
+      if (
+        this.cursors.down.isDown &&
+        !this.isSitting &&
+        this.scene.registry.values.state != 0
+      ) {
         this.isSitting = true;
         this.marioBody.velocity.x = 0;
       } else if (this.cursors.down.isUp) {
@@ -164,7 +164,7 @@ export default class Mario extends Phaser.GameObjects.Container {
       }
 
       if (this.cursors.space.isDown && this.shootTime >= 25) {
-        if (this.marioState == 2) {
+        if (this.scene.registry.values.state == 2) {
           this.bullet = this.createBullet();
           this.bullet.body.velocity.x = 250 * this.mario.scaleX;
           this.bullet.play('shoot');
@@ -178,27 +178,27 @@ export default class Mario extends Phaser.GameObjects.Container {
   handleAnimation(t: number, dt: number) {
     if (!this.winning) {
       if (this.marioBody.velocity.y != 0 && this.isJumping) {
-        this.mario.play(`${this.marioState}-jump`);
+        this.mario.play(`${this.scene.registry.values.state}-jump`);
         this.marioBody.setSize(this.mario.width - 6, this.mario.height);
         this.marioBody.setOffset(4, 0);
       } else if (this.marioBody.velocity.x == 0) {
         if (!this.isSitting) {
-          this.mario.play(`${this.marioState}-idle`, true);
+          this.mario.play(`${this.scene.registry.values.state}-idle`, true);
           this.marioBody.setSize(this.mario.width - 4, this.mario.height);
           this.marioBody.setOffset(2, 0);
         } else {
-          this.mario.play(`${this.marioState}-sit`, true);
+          this.mario.play(`${this.scene.registry.values.state}-sit`, true);
           this.marioBody.setSize(this.mario.width - 4, this.mario.height - 9);
           this.marioBody.setOffset(2, 9);
         }
       } else {
-        this.mario.play(`${this.marioState}-run`, true);
+        this.mario.play(`${this.scene.registry.values.state}-run`, true);
       }
     } else {
       this.climbTime++;
 
       if (!this.isGoToCastle) {
-        this.mario.play(`${this.marioState}-climb`);
+        this.mario.play(`${this.scene.registry.values.state}-climb`);
       }
       if (this.climbTime >= 50 && !this.isGoToCastle) {
         this.mario.scaleX = -1;
@@ -217,11 +217,11 @@ export default class Mario extends Phaser.GameObjects.Container {
       }
       if (this.marioBody.velocity.x > 0) {
         if (this.climbTime >= 151) {
-          this.mario.play(`${this.marioState}-idle`, true);
+          this.mario.play(`${this.scene.registry.values.state}-idle`, true);
           this.marioBody.velocity.x = 0;
           this.nextLevel = true;
         } else {
-          this.mario.play(`${this.marioState}-run`, true);
+          this.mario.play(`${this.scene.registry.values.state}-run`, true);
         }
       }
     }
@@ -249,7 +249,7 @@ export default class Mario extends Phaser.GameObjects.Container {
   }
   public gotHit(): void {
     this.isVulnerable = false;
-    if (this.marioState >= 1) {
+    if (this.scene.registry.values.state >= 1) {
       this.shrinkMario();
     } else {
       this.isDying = true;

@@ -44,11 +44,10 @@ export class HudScene extends Phaser.Scene {
     ]);
 
     // create events
-    this.level = this.scene.get(`level${this.registry.get('world')}`);
+    this.level = this.scene.get('game-scene');
     // level.events.on('coinsChanged', this.updateCoins, this);
     this.level.events.on('scoreChanged', this.updateScore, this);
     this.level.events.on('livesChanged', this.updateLives, this);
-    this.level.events.on('mapChanged', this.updateMap, this);
   }
   update() {}
   private updateScore() {
@@ -60,14 +59,5 @@ export class HudScene extends Phaser.Scene {
     this.textElements
       .get('LIVES')!
       .setText(`Lives ${this.registry.get('lives')}`);
-  }
-  private updateMap() {
-    this.level = this.scene.get(`level${this.registry.get('world')}`);
-    this.level.events.on('scoreChanged', this.updateScore, this);
-    this.level.events.on('mapChanged', this.updateMap, this);
-    this.level.events.on('livesChanged', this.updateLives, this);
-    this.textElements
-      .get('WORLD')!
-      .setText(`Map ${this.registry.get('world')}`);
   }
 }

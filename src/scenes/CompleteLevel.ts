@@ -9,15 +9,7 @@ export default class CompleteLevel extends Phaser.Scene {
   constructor() {
     super('complete');
   }
-  init(data) {
-    this.currentLevel = data.level;
-    this.marioState = data.marioState;
-    if (this.currentLevel == 3) {
-      this.nextLevel = 'menu';
-    } else {
-      this.nextLevel = `level${this.currentLevel + 1}`;
-    }
-
+  init() {
     this.spaceKey = this.input.keyboard.addKey(
       Phaser.Input.Keyboard.KeyCodes.SPACE
     );
@@ -33,7 +25,7 @@ export default class CompleteLevel extends Phaser.Scene {
         width / 2,
         height / 2,
         '8bit',
-        `Level ${this.currentLevel} completed!`,
+        `Level ${this.registry.values.world - 1} completed!`,
         10
       )
       .setOrigin(0.5, 0.5);
@@ -41,7 +33,12 @@ export default class CompleteLevel extends Phaser.Scene {
 
   update() {
     if (this.spaceKey.isDown) {
-      this.scene.start(this.nextLevel, { marioState: this.marioState });
+      if (this.registry.values.world <= 3) {
+        this.scene.start('game-scene');
+        this.scene.start('HudScene');
+      } else {
+        this.scene.start('menu');
+      }
     }
   }
 }

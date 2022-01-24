@@ -34,13 +34,13 @@ export default class Menu extends Phaser.Scene {
   update(time: number, delta: number): void {
     if (this.spaceKey.isDown) {
       this.scene.start('HudScene');
-      this.scene.start('level1');
+      this.scene.start('game-scene');
       this.scene.bringToTop('HudScene');
     }
   }
 
   private initGlobalDataManager(): void {
-    this.registry.set('level', 'level1');
+    this.registry.set('state', 0);
     this.registry.set('world', 1);
     this.registry.set('score', 0);
     this.registry.set('lives', 2);

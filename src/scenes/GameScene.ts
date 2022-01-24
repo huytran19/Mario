@@ -7,7 +7,7 @@ import Flagpole from '~/objects/FlagPole';
 import Goomba from '~/objects/Goomba';
 import Mario from '~/objects/Mario';
 
-export default class Level1 extends Phaser.Scene {
+export default class GameScene extends Phaser.Scene {
   private map!: Phaser.Tilemaps.Tilemap;
   private tileset!: Phaser.Tilemaps.Tileset;
   private ground!: Phaser.Tilemaps.TilemapLayer;
@@ -19,16 +19,14 @@ export default class Level1 extends Phaser.Scene {
   private enemies!: Phaser.GameObjects.Group;
   private headstick!: Phaser.GameObjects.Sprite;
   private flagPole!: Flagpole;
-  private marioState!: number;
-  private isEnemyOnBrick: boolean = false;
 
   constructor() {
-    super('level1');
+    super('game-scene');
   }
 
   create() {
     this.sound.play('soundtrack');
-    this.map = this.make.tilemap({ key: 'map1' });
+    this.map = this.make.tilemap({ key: `map${this.registry.values.world}` });
     this.tileset = this.map.addTilesetImage('world', 'tiles');
     this.ground = this.map.createLayer('Ground', this.tileset);
     this.ground.setCollisionByProperty({ collides: true });
@@ -36,8 +34,7 @@ export default class Level1 extends Phaser.Scene {
     this.mario = new Mario(
       this,
       this.scene.scene.registry.values.spawn.x,
-      this.scene.scene.registry.values.spawn.y,
-      0
+      this.scene.scene.registry.values.spawn.y
     );
     this.add.existing(this.mario);
 
@@ -152,7 +149,7 @@ export default class Level1 extends Phaser.Scene {
   }
 
   update() {
-    if (this.mario.marioState == 2) {
+    if (this.registry.values.state == 2) {
       if (this.mario.bullet) {
         this.bullets.add(this.mario.bullet);
       }
@@ -162,11 +159,8 @@ export default class Level1 extends Phaser.Scene {
     }
     if (this.mario.nextLevel) {
       this.scene.scene.registry.values.world += 1;
-      this.scene.scene.events.emit('mapChanged');
-      this.scene.start('complete', {
-        level: 1,
-        marioState: this.mario.marioState,
-      });
+      this.scene.start('complete');
+      this.scene.stop('HudScene');
     }
   }
 
@@ -226,7 +220,7 @@ export default class Level1 extends Phaser.Scene {
     if (bodyBox.touching.down && box.active) {
       box.marioHitBox();
       let isChange;
-      if (mario.marioState == 0) {
+      if (this.registry.values.state == 0) {
         isChange = false;
       } else {
         isChange = true;
@@ -258,7 +252,7 @@ export default class Level1 extends Phaser.Scene {
     const brick = obj2 as Brick;
     const bodyBrick = brick.body as Phaser.Physics.Arcade.Body;
     if (bodyBrick.touching.down) {
-      if (mario.marioState == 0) {
+      if (this.registry.values.state == 0) {
         brick.marioHitBrick();
         brick.startHitTimeline();
       } else {
@@ -296,9 +290,9 @@ export default class Level1 extends Phaser.Scene {
       collectible.typeofContent === 'flower'
     ) {
       this.sound.play('powerUp');
-      if (mario.marioState == 0) {
+      if (this.registry.values.state == 0) {
         mario.growUp();
-      } else if (mario.marioState == 1) {
+      } else if (this.registry.values.state == 1) {
         mario.superman();
       }
     }
